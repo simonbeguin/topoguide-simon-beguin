@@ -9,6 +9,7 @@ db.sqlite3
 # IDE working files (here VS Code)
 .vscode/
 
+
 # References: 
 
 # https://www.atlassian.com/fr/git/tutorials/saving-changes/gitignore
