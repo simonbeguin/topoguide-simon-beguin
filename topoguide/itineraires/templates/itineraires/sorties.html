@@ -24,7 +24,7 @@
             <tbody>
             {% for sortie in sorties %}
                 <tr>
-                    <td>{{ sortie.utilisateur }}</td>
+                    <td><a href="{% url 'itineraires:sortie_details' sortie.id %}">{{ sortie.utilisateur }}</a></td>
                     <th></th>
                     <td>{{ sortie.date_sortie }}</td>
                 </tr>
