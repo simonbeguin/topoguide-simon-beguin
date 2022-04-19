@@ -1,11 +1,11 @@
+from tkinter import CASCADE
 from django.db import models
 from django.contrib import admin
 from django.db.models import IntegerField, Model
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 
 # Create your models here.
 
-#@login_required
 class Itineraire(models.Model):
     """
     Un itinéraire constitué du titre, du point de départ, de la description, de l'altitude de départ, 
@@ -25,9 +25,30 @@ class Itineraire(models.Model):
     difficulte = models.IntegerField('Difficulté (de 1 à 5)', default=1,choices=CHOIX_DIF)
 
     
+    def __str__(self):
+        return self.titre
+    
+    
+class Sortie(models.Model):
+    """
+    Une sortie constitué de l'utilisateur qui a enregistré la sortie, de l'itinéraire correspondant dans le topoguide, de la date de la sortie
+    de la durée réelle (en heures), du nombre de personnes ayant participé à la sortie, de l'expérience du groupe (à choisir dans une liste tous débutants, tous expérimentés, mixte)
+    de la météo (à choisir dans une liste bonne, moyenne, mauvaise) et de la difficulté ressentie (de 1 à 5)
+    """
+    utilisateur = models.ForeignKey(User, on_delete=models.CASCADE)
+    itineraire = models.ForeignKey(Itineraire, on_delete=models.CASCADE)
+    date_sortie = models.CharField('Date de la sortie', max_length= 15)
+    duree_reelle = models.FloatField('Durée réelle (en heure)')
+    CHOIX_EXP = ((1,'Tous débutants'),(2,'Tous expérimentés'),(3,'Mixte'))
+    nombre_personne = models.FloatField('Nombre de personnes ayant réalisé la sortie')
+    experience = models.IntegerField('Expérience du groupe', default=1,choices=CHOIX_EXP)
+    CHOIX_METEO = ((1,'Bonne'),(2,'Moyenne'),(3,'Mauvaise'))
+    meteo = models.IntegerField('Météo', default=1,choices=CHOIX_METEO)
+    CHOIX_DIF = ((1,'1'),(2,'2'),(3,'3'), (4,'4'), (5,'5'))
+    difficulte_ressentie = models.IntegerField('Difficulté ressentie (de 1 à 5)', default=1,choices=CHOIX_DIF)
 
     
     def __str__(self):
-        return self.titre
+        return (self.utilisateur, self.date_sortie)
     
     
