@@ -1,10 +1,12 @@
 from django.shortcuts import get_list_or_404, get_object_or_404, render
+from django.contrib.auth.decorators import login_required
 
 from .models import Itineraire
 
 
 # Create your views here.
 
+@login_required()
 def itineraire_list(request):
     """
     Prends les itinéraires créés de données et les affiches

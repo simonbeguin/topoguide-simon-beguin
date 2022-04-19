@@ -1,9 +1,11 @@
 from django.db import models
 from django.contrib import admin
 from django.db.models import IntegerField, Model
+from django.contrib.auth.decorators import login_required
 
 # Create your models here.
 
+#@login_required
 class Itineraire(models.Model):
     """
     Un itinéraire constitué du titre, du point de départ, de la description, de l'altitude de départ, 
