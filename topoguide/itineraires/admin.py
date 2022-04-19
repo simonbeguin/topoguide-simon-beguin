@@ -2,8 +2,8 @@ from unicodedata import name
 from django.contrib import admin
 from .models import Itineraire
 
-# Register your models here.
 
+# Register your models here.
 class ItineraireAdmin(admin.ModelAdmin):
     fieldsets = [
         (None,               {'fields': ['titre']}),
