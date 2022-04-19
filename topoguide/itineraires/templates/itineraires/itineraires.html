@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}Itineraire List{% endblock title%}
+
+{% block content %}
+
+    <div class="row pb-3">
+        <h1>Itineraires</h1>
+    </div>
+
+
+    <div class="row">
+    {% if itineraires %}
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Titre</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for itineraire in itineraires %}
+                <tr>
+                    <td>{{ itineraire.titre }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <div class="jumbotron"><i>Pas d'itinéraires disponibles.</i></div>
+    {% endif %}
+    </div>
+
+{% endblock content %}
