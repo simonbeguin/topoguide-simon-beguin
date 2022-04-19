@@ -7,7 +7,7 @@ from .models import Itineraire, Sortie
 # Create your views here.
 
 @login_required()
-def itineraire_list(request):
+def itineraires(request):
     """
     Prends les itinéraires créés de données et les affiches
     """
@@ -16,9 +16,10 @@ def itineraire_list(request):
 
 
 @login_required()
-def sortie_list(request, itineraire_id):
+def sorties(request, itineraire_id):
     """
     Prends les sorties créés de données et les affiches
     """
     sorties  = get_list_or_404(Sortie, pk = itineraire_id)
     return render(request, 'itineraires/sorties.html', {'sorties': sorties})
+
