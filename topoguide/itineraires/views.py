@@ -1,7 +1,7 @@
 from django.shortcuts import get_list_or_404, get_object_or_404, render
 from django.contrib.auth.decorators import login_required
 
-from .models import Itineraire
+from .models import Itineraire, Sortie
 
 
 # Create your views here.
@@ -10,8 +10,15 @@ from .models import Itineraire
 def itineraire_list(request):
     """
     Prends les itinéraires créés de données et les affiches
-    Get albums from database, either all of them or those matching a POST request
-    :param request: The incoming request
     """
     itineraires = get_list_or_404(Itineraire)
     return render(request, 'itineraires/itineraires.html', {'itineraires': itineraires})
+
+
+@login_required()
+def sortie_list(request, itineraire_id):
+    """
+    Prends les sorties créés de données et les affiches
+    """
+    sorties  = get_list_or_404(Sortie, pk = itineraire_id)
+    return render(request, 'itineraires/sorties.html', {'sorties': sorties})

@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}Liste Sorties{% endblock title%}
+
+{% block content %}
+
+    <div class="row pb-3">
+        <h1>Sorties</h1>
+    </div>
+
+
+    <div class="row">
+    {% if sorties %}
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Par</th>
+                <th></th>
+                <th>Date</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for sortie in sorties %}
+                <tr>
+                    <td>{{ sortie.utilisateur }}</td>
+                    <th></th>
+                    <td>{{ sortie.date_sortie }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <div class="jumbotron"><i>Pas de sorties disponibles.</i></div>
+    {% endif %}
+    </div>
+
+{% endblock content %}

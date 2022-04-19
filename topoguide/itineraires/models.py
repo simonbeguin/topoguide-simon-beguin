@@ -49,6 +49,6 @@ class Sortie(models.Model):
 
     
     def __str__(self):
-        return (self.utilisateur, self.date_sortie)
+        return '%s %s'% (self.utilisateur, self.date_sortie)
     
     
