@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %} Détails Sortie {% endblock title%}
+
+{% block content %}
+
+<div class="row pb-3">
+    <h1>{{ sortie.itineraire }} <small> -- Sortie de {{ sortie.utilisateur }}</small></h1>
+</div>
+
+<div class="row">
+    <table class="table table-striped">
+        <tbody>
+            <tr>
+                        <td>
+                        <br>
+                        Date : {{ sortie.date_sortie }}
+                        <br>
+                        Durée réelle : {{ sortie.duree_reelle }}
+                        <br>
+                        Expérience : {{ sortie.experience }}
+                        <br>
+                        Météo : {{ sortie.meteo }}
+                        <br>
+                        Difficulté ressentie : {{ sortie.difficulte_ressentie }}
+                        </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+{% endblock content %}

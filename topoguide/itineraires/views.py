@@ -9,7 +9,7 @@ from .models import Itineraire, Sortie
 @login_required()
 def itineraires(request):
     """
-    Prends les itinéraires créés de données et les affiches
+    Prends les itinéraires créés et les affiches
     """
     itineraires = get_list_or_404(Itineraire)
     return render(request, 'itineraires/itineraires.html', {'itineraires': itineraires})
@@ -18,8 +18,16 @@ def itineraires(request):
 @login_required()
 def sorties(request, itineraire_id):
     """
-    Prends les sorties créés de données et les affiches
+    Prends les sorties créés  et les affiches
     """
     sorties  = get_list_or_404(Sortie, pk = itineraire_id)
     return render(request, 'itineraires/sorties.html', {'sorties': sorties})
+
+@login_required()
+def sortie(request, sortie_id):
+    """
+    Prend une sortie et affiche les détails
+    """
+    sortie = get_object_or_404(Sortie, pk=sortie_id)
+    return render(request, 'itineraires/sorties_details.html', {'sortie': sortie})
 
