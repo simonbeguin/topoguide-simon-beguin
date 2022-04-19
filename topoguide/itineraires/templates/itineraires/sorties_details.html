@@ -1,4 +1,6 @@
 {% extends 'base.html' %}
+{% load bootstrap5 %} {# Yes, load it again even if base loads it #}
+
 
 {% block title %} Détails Sortie {% endblock title%}
 
@@ -12,8 +14,7 @@
     <table class="table table-striped">
         <tbody>
             <tr>
-                        <td>
-                        <br>
+                         <td>
                         Date : {{ sortie.date_sortie }}
                         <br>
                         Durée réelle : {{ sortie.duree_reelle }}

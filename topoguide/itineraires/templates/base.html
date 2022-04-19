@@ -1,19 +1,22 @@
 {% load static %}
+{% load bootstrap5 %}
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    {# Load CSS and JavaScript #}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
 
-
+    {# Display django.contrib.messages as Bootstrap alerts #}
+    {% bootstrap_messages %}
     <title>{% block title %}TOPOGUIDE{% endblock %}</title>
 </head>
 
 <body>
     <div class="container">
-        <div class="row pb-3">
-        </div>
 
         {% block content %}{% endblock %}
 
