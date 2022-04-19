@@ -7,7 +7,7 @@
 {% block content %}
 
 <div class="row pb-3">
-    <h1>{{ sortie.itineraire }} <small> -- Sortie de {{ sortie.utilisateur }}</small></h1>
+    <h1><a href="{% url 'itineraires:sorties' sortie.id %}">{{ sortie.itineraire }}</a><small> -- Sortie de {{ sortie.utilisateur }}</small></h1>
 </div>
 
 <div class="row">
