@@ -10,5 +10,7 @@ urlpatterns = [
     path('sorties/<int:itineraire_id>/', views.sorties, name='sorties'),
     path('sortie/<int:sortie_id>/', views.sortie, name='sortie_details'),
     path('sortie/nouvelle_sortie/', views.nouvelle_sortie, name='nouvelle_sortie'),
+    path('sortie/<int:sortie_id>/editer/', views.editer_sortie, name='editer_sortie'),
+
 
     ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

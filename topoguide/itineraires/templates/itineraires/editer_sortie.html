@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load bootstrap5 %} {# Yes, load it again even if base loads it #}
+
+{% block content %}
+
+    <h2>Nouvelle sortie</h2>
+    <form method="POST" class="post-form">{% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="button">Enregistrer</button>
+    </form>
+    <input type="button" onclick= window.location.href="../" value="Annuler" style="float: left">
+{% endblock %}
+
