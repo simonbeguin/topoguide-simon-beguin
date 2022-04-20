@@ -17,12 +17,16 @@
             <thead>
             <tr>
                 <th>Titre</th>
+                <th>Durée estimée</th>
+                <th>Difficulté estimée</th>
             </tr>
             </thead>
             <tbody>
             {% for itineraire in itineraires %}
                 <tr>
                     <td><a href="{% url 'itineraires:sorties' itineraire.id %}">{{ itineraire.titre }}</a></td>
+                    <td>{{ itineraire.duree }} h </td>
+                    <td>{{ itineraire.difficulte }}/5</td>
                 </tr>
             {% endfor %}
             </tbody>
