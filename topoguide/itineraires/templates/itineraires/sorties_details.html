@@ -27,6 +27,13 @@
                         </td>
             </tr>
         </tbody>
+        <article class="sortie">
+            <aside class="actions">
+                <a class="btn btn-default" href="{% url 'itineraires:editer_sortie' sortie.id %}">
+                    {% include './icones/pencil-fill.svg' %} Éditer sortie
+                </a>
+            </aside>
+        </article>
     </table>
 </div>
 

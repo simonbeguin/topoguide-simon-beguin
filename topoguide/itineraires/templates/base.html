@@ -14,7 +14,21 @@
     {% bootstrap_messages %}
     <title>{% block title %}TOPOGUIDE{% endblock %}</title>
     <style>
-        {% load static %}
+        #intro {
+            background-image: url("https://www.chamonix.com/sites/default/files/styles/ogimage/public/media/images/©Fabian_Bodet.jpg");
+            height: 100vh;
+            opacity : 50%
+            
+          }
+    
+          /* Height for devices larger than 576px */
+          @media (min-width: 992px) {
+            #intro {
+              margin-top:  px;
+            }
+          }
+
+       
         ul {
           list-style-type: none;
           margin: 0;
@@ -64,8 +78,11 @@
 
     <div class="container">
 
-        {% block content %}{% endblock %}
-
     </div>
+    <div>
+        <div id="intro" class="bg-image shadow-2-strong">
+        {% block content %}{% endblock %}
+      </div>
+    <div>
 </body>
 </html>

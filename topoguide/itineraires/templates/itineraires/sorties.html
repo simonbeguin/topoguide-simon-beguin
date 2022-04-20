@@ -27,9 +27,8 @@
                 <h1>Sorties</h1>
             </div>
             {% for sortie in sorties %}
-
                 <tr>
-                    <td><a href="{% url 'itineraires:sortie_details' sortie.id %}">{{ sortie.utilisateur }}</a></td>
+                    <td><a href="{% url 'itineraires:sortie_details' sortie.id %}">Consulter</a></td>
                     <th></th>
                     <td>{{ sortie.date_sortie }}</td>
                 </tr>
