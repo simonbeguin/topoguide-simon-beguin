@@ -21,7 +21,7 @@ def sorties(request, itineraire_id):
     """
     Prends les sorties créés  et les affiches
     """
-    sorties  = get_list_or_404(Sortie, pk = itineraire_id)
+    sorties  = get_list_or_404(Sortie, itineraire_id = itineraire_id)
     return render(request, 'itineraires/sorties.html', {'sorties': sorties})
 
 @login_required
@@ -48,5 +48,21 @@ def nouvelle_sortie(request):
     else:
         form = SortieForm()
     return render(request, 'itineraires/editer_sortie.html', {'form': form})
+
+
+def editer_sortie(request, sortie_id):
+    sortie = get_object_or_404(Sortie, pk=sortie_id)
+    if request.method == "POST":
+        form = SortieForm(request.POST, instance=sortie)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.author = request.user
+            post.published_date = timezone.now()
+            post.save()
+            return redirect('sortie_details', pk=sortie_id)
+    else:
+        form = SortieForm(instance=sortie)
+    return render(request, 'itineraires/editer_sortie.html', {'form': form})
+
 
 
