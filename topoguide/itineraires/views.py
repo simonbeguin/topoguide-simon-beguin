@@ -35,12 +35,8 @@ def sortie(request, sortie_id):
 @login_required()
 def nouvelle_sortie(request):
     """
-    Prend une sortie et affiche les détails
+    Crée une nouvelle sortie
     """
-    from django.forms import ModelForm
-
-@login_required()
-def nouvelle_sortie(request):
     if request.method == "POST":
         form = SortieForm(request.POST)
         if form.is_valid():
@@ -48,7 +44,9 @@ def nouvelle_sortie(request):
             sortie.author = request.user
             sortie.published_date = timezone.now()
             sortie.save()
-            return redirect('post_detail', pk=sortie.pk)
+            return redirect('itineraires:sortie_details', pk = sortie.pk)
     else:
         form = SortieForm()
-    return render(request, 'itineraires/nouvelle_sortie.html', {'form': form})
+    return render(request, 'itineraires/editer_sortie.html', {'form': form})
+
+
