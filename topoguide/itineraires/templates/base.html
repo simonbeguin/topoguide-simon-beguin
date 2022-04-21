@@ -14,12 +14,6 @@
     {% bootstrap_messages %}
     <title>{% block title %}TOPOGUIDE{% endblock %}</title>
     <style>
-        #intro {
-            background-image: url("https://www.chamonix.com/sites/default/files/styles/ogimage/public/media/images/©Fabian_Bodet.jpg");
-            height: 100vh;
-            opacity : 50%
-            
-          }
     
           /* Height for devices larger than 576px */
           @media (min-width: 992px) {
@@ -64,6 +58,27 @@
         .active {
             background-color: #DCE1E1;
         }
+        body {
+            display: block;
+            position: relative;
+          }
+
+          body::after {
+            content: "";
+            background: url("https://www.chamonix.com/sites/default/files/styles/ogimage/public/media/images/©Fabian_Bodet.jpg");
+            opacity: 0.4;
+            background-attachment:scroll;
+            background-repeat : no-repeat;
+            background-position: top;
+            background-size:  cover;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            position: absolute;
+            z-index: -1;   
+          }
+
     </style>
     
 </head>
@@ -74,15 +89,11 @@
         <li><a href="/itineraires/">Itineraires</a></li>
         <li style="float:right"><a href="/accounts/logout/">Logout</a></li>
             
-      </ul>
-
-    <div class="container">
-
-    </div>
-    <div>
-        <div id="intro" class="bg-image shadow-2-strong">
-        {% block content %}{% endblock %}
+    </ul>
+      <div class="container">
+                {% block content %}{% endblock %}
       </div>
-    <div>
 </body>
 </html>
+
+
