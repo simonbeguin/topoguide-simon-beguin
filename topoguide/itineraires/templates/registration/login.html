@@ -1,6 +1,31 @@
-<form method="post" action="{% url 'login' %}">
-    {% csrf_token %}
-    {{ form }}
-    <input type="submit" value="login">
-    <input type="hidden" name="next" value="{{ next }}">
-    </form>
+
+{% extends 'base.html' %}
+{% load bootstrap5 %}
+
+
+
+{% block content %}
+<div id="content" class="flex">
+    <div class="" >
+        <div class="page-content page-container" id="page-content">
+            <div class="padding">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-header"><strong>Login to your account</strong></div>
+                            <div class="card-body">
+                                <form method="post" action="{% url 'login' %}">
+                                    {% csrf_token %}
+                                    {{ form }}
+                                    <div class="form-group"><input type="submit" value="login">
+                                    <input type="hidden" name="next" value="{{ next }}">
+                                    </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
