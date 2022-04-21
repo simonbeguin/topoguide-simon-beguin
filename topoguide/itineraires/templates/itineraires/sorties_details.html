@@ -7,7 +7,7 @@
 {% block content %}
 
 <div class="row pb-3">
-    <h1><a href="{% url 'itineraires:sorties' sortie.id %}">{{ sortie.itineraire }}</a><small> -- Sortie de {{ sortie.utilisateur }}</small></h1>
+    <h1><a href="{% url 'itineraires:sorties' sortie.itineraire.id %}">{{ sortie.itineraire }}</a><small> -- Sortie de {{ sortie.utilisateur }}</small></h1>
 </div>
 
 <div class="row">
@@ -29,7 +29,7 @@
         </tbody>
         <article class="sortie">
             <aside class="actions">
-                <a class="btn btn-default" href="{% url 'itineraires:editer_sortie' sortie.id %}">
+                <a class="btn btn-default" href="{% url 'itineraires:modif_sortie' sortie.id %}">
                     {% include './icones/pencil-fill.svg' %} Éditer sortie
                 </a>
             </aside>
