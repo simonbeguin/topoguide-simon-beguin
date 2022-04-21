@@ -73,7 +73,7 @@ def nouvelle_sortie(request):
 @login_required
 def modif_sortie(request, sortie_id):
     """
-    Modifie uen sortie déjà enregistée dans la base de donnée
+    Modifie uen sortie déjà enregistée dans la base de donnée et pré-remplissage avec itinéraire
     Args:
         request: la demande entrante, GET or POST
     Returns:
@@ -91,9 +91,10 @@ def modif_sortie(request, sortie_id):
             sortie = form.save(commit=False)
             sortie.author = request.user
             sortie.published_date = timezone.now()
+            sortie.itineraire =  get_object_or_404(Itineraire, pk = sortie.itineraire.id) #pré-rempli l'itinéraire
             sortie.save()
             return redirect('itineraires:sortie_details', sortie_id)
-    return render(request, 'itineraires/modif_sortie.html', {'form': form})
+    return render(request, 'itineraires/modif_sortie.html', {'form': form, 'itineraire' : sortie.itineraire})
 
 
 

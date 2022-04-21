@@ -1,11 +1,12 @@
 {% extends 'base.html' %}
-{% load bootstrap5 %} {# Yes, load it again even if base loads it #}
+{% load bootstrap5 %}
 
 
 {% block title %} Détails Sortie {% endblock title%}
 
 {% block content %}
 
+<!-- Entête de la page de sortie avec un lien cliquable sur l'itinéraire pour revenir à la page des itinéraires ainsi que le nom du randonneur-->
 <div class="row pb-3">
     <h1><a href="{% url 'itineraires:sorties' sortie.itineraire.id %}">{{ sortie.itineraire }}</a><small> -- Sortie de {{ sortie.utilisateur }}</small></h1>
 </div>
@@ -29,6 +30,7 @@
         </tbody>
         <article class="sortie">
             <aside class="actions">
+                <!-- Ajout d'un icône pour éditer une sortie -->
                 <a class="btn btn-default" href="{% url 'itineraires:modif_sortie' sortie.id %}">
                     {% include './icones/pencil-fill.svg' %} Éditer sortie
                 </a>

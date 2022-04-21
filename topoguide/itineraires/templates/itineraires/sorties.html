@@ -1,34 +1,37 @@
 {% extends 'base.html' %}
-{% load bootstrap5 %} {# Yes, load it again even if base loads it #}
+{% load bootstrap5 %} 
 
 
 {% block title %}Liste Sorties{% endblock title%}
 
 {% block content %}
 
+<!-- Affichage des informations sur l'itinéraire en début de page -->
     <div class="row pb-3">
         <h1>{{itineraire.titre}}</h1>
-        {{itineraire.description}}
+        {{itineraire.description}} depuis {{itineraire.point_depart}}
         <br><br>
+        <div class="container">
         <tr>
-            <td>Altitude de départ : {{itineraire.altitude_depart}} mètres</td>
+            <td><b>Altitude de départ</b> : {{itineraire.altitude_depart}} mètres</td>
             <br>
-            <td>Altitude minimale : {{itineraire.altitude_minimale}} mètres</td>
+            <td><b>Altitude minimale</b> : {{itineraire.altitude_minimale}} mètres</td>
             <br>
-            <td>Altitude maximale : {{itineraire.altitude_minimale}} mètres</td>
+            <td><b>Altitude maximale</b> : {{itineraire.altitude_minimale}} mètres</td>
             <br>
-            <td>Dénivelé positif cumulé : {{itineraire.denivele_positif_cumule}} mètres </td>
+            <td><b>Dénivelé positif cumulé</b> : {{itineraire.denivele_positif_cumule}} mètres </td>
             <br>
-            <td>Dénivelé négatif cumulé : {{itineraire.denivele_negatif_cumule}} mètres </td>
+            <td><b>Dénivelé négatif cumulé</b> : {{itineraire.denivele_negatif_cumule}} mètres </td>
             <br>
-            <td>Durée estimée : {{itineraire.duree_estimee}} heures</td>
+            <td><b>Durée estimée</b> : {{itineraire.duree}} heures</td>
             <br>
-            <td>Difficulté : {{itineraire.difficulte}} /5</td>
+            <td><b>Difficulté</b> : {{itineraire.difficulte}} /5</td>
         </tr>
+        </div>
 
     </div>
 
-
+<!-- Affichage des différentes sorties -->
     <div class="row">
     {% if sorties %}
         <table class="table table-striped">
@@ -49,9 +52,10 @@
                     <td>{{sortie.utilisateur}}</td>
                     <th></th>
                     <td>{{ sortie.date_sortie }}</td>
-                    <td><a style="float:center" href="{% url 'itineraires:sortie_details' sortie.id %}">Consulter</a></td>
-                    {%if utilisateur == sortie.utilisateur%}
-                    <td><a style="float:center" href="{% url 'itineraires:modif_sortie' sortie.id %}">Modifier</a></td>
+                    <td><button type="button" class="btn btn-secondary" style="float:center" onclick= window.location.href="{% url 'itineraires:sortie_details' sortie.id %}">Consulter</button></td>
+                    <!-- N'affiche le bouton modifier que si l'utilisateur est l'auteur de la sortie -->
+                    {%if utilisateur == sortie.utilisateur%} 
+                    <td><button type="button" class="btn btn-secondary" style="float:center" onclick= window.location.href="{% url 'itineraires:modif_sortie' sortie.id %}">Modifier</button></td>
                 </tr>
                 {% endif %}
             {% endfor %}
@@ -62,7 +66,7 @@
     {% endif %}
     </div>
 
-
+<!-- Ajout de 2 boutons pour créer une sortie ou revenir à la page des itinéraires-->
 <div class="row pt-3">
     <a class="btn btn-secondary" href="{% url 'itineraires:itineraires' %}">Retour aux itinéraires</a>
 </div>

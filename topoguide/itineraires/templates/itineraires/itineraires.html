@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load bootstrap5 %} {# Yes, load it again even if base loads it #}
+{% load bootstrap5 %} 
 
 
 {% block title %}Itineraire List{% endblock title%}
@@ -10,19 +10,19 @@
         <h1>Itineraires</h1>
     </div>
 
-
     <div class="row">
-    {% if itineraires %}
+    {% if itineraires %} <!-- Vérification qu'il existe des itinéraires-->
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>Titre</th>
+                <th>Nom</th>
                 <th>Durée estimée</th>
                 <th>Difficulté estimée</th>
             </tr>
             </thead>
             <tbody>
-            {% for itineraire in itineraires %}
+            <!-- Affichage de tous les itinéraires-->
+            {% for itineraire in itineraires %} 
                 <tr>
                     <td><a href="{% url 'itineraires:sorties' itineraire.id %}">{{ itineraire.titre }}</a></td>
                     <td>{{ itineraire.duree }} h </td>

@@ -2,10 +2,11 @@
 {% load bootstrap5 %}
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
     {# Load CSS and JavaScript #}
     {% bootstrap_css %}
     {% bootstrap_javascript %}
@@ -13,6 +14,8 @@
     {# Display django.contrib.messages as Bootstrap alerts #}
     {% bootstrap_messages %}
     <title>{% block title %}TOPOGUIDE{% endblock %}</title>
+</head>
+    <!-- Style CSS-->
     <style>
     
           /* Height for devices larger than 576px */
@@ -58,6 +61,9 @@
         .active {
             background-color: #DCE1E1;
         }
+    </head>
+
+        <!-- Utilisation petit trick pour mettre une image en arrère plan et modfier son opacité sans modifier celle du texte-->
         body {
             display: block;
             position: relative;
@@ -80,10 +86,12 @@
           }
 
     </style>
+    <!-- Fin style CSS-->
     
 </head>
 
 <body >
+    <!-- Bar de navigation-->
     <ul>
         <li><b class="active" href="#home">TOPOGUIDE</b></li>
         <li><a href="/itineraires/">Itineraires</a></li>
@@ -91,7 +99,7 @@
             
     </ul>
       <div class="container">
-                {% block content %}{% endblock %}
+        {% block content %}{% endblock %}
       </div>
 </body>
 </html>

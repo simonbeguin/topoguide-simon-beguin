@@ -3,7 +3,6 @@
 {% load bootstrap5 %}
 
 
-
 {% block content %}
 <div id="content" class="flex">
     <div class="" >
@@ -12,7 +11,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="card">
-                            <div class="card-header"><strong>Login to your account</strong></div>
+                            <div class="card-header"><strong>Se connecter à votre compte</strong></div>
                             <div class="card-body">
                                 <form method="post" action="{% url 'login' %}">
                                     {% csrf_token %}

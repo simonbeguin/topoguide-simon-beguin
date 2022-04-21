@@ -1,13 +1,16 @@
 {% extends 'base.html' %}
-{% load bootstrap5 %} {# Yes, load it again even if base loads it #}
+{% load bootstrap5 %} 
 
 {% block content %}
 
     <h2>Nouvelle sortie</h2>
+    <!-- Formulaire de création d'une sortie-->
     <form method="POST" action = "" class="post-form">{% csrf_token %}
+        <div class="mb-3">
         {{ form.as_p }}
+    </div>
         <button type="submit" class="button">Enregistrer</button>
     </form>
-    <input type="button" onclick= window.location.href="../" value="Annuler" style="float: left">
+    <input type="button" onclick= window.location.href="/itineraires/" value="Annuler" style="float: left">
 {% endblock %}
 
