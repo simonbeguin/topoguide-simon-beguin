@@ -21,7 +21,7 @@ class Itineraire(models.Model):
     denivele_positif_cumule = models.FloatField('Dénivelé positif cumulé (m)')
     denivele_negatif_cumule = models.FloatField('Dénivelé négatif cumulé (m)')
     duree = models.FloatField('Durée (en heure)')
-    CHOIX_DIF = ((1,'1'),(2,'2'),(3,'3'), (4,'4'), (5,'5'))
+    CHOIX_DIF = ((1,'1'),(2,'2'),(3,'3'), (4,'4'), (5,'5')) # Liste d'entier avec choix pour difficulté
     difficulte = models.IntegerField('Difficulté (de 1 à 5)', default=1,choices=CHOIX_DIF)
 
     
@@ -35,11 +35,11 @@ class Sortie(models.Model):
     de la durée réelle (en heures), du nombre de personnes ayant participé à la sortie, de l'expérience du groupe (à choisir dans une liste tous débutants, tous expérimentés, mixte)
     de la météo (à choisir dans une liste bonne, moyenne, mauvaise) et de la difficulté ressentie (de 1 à 5)
     """
-    utilisateur = models.ForeignKey(User, on_delete=models.CASCADE)
+    utilisateur = models.ForeignKey(User, on_delete=models.CASCADE) #Référence à enregistrements d'autres tables avec le type ForeignKey
     itineraire = models.ForeignKey(Itineraire, on_delete=models.CASCADE)
     date_sortie = models.CharField('Date de la sortie', max_length= 20)
     duree_reelle = models.FloatField('Durée réelle (en heure)')
-    CHOIX_EXP = (('Tous débutants','Tous débutants'),('Tous expérimentés','Tous expérimentés'),('Mixte','Mixte'))
+    CHOIX_EXP = (('Tous débutants','Tous débutants'),('Tous expérimentés','Tous expérimentés'),('Mixte','Mixte')) # Liste de caractères avec choix pour expérience
     nombre_personne = models.FloatField('Nombre de personnes ayant réalisé la sortie')
     experience = models.CharField('Expérience du groupe', max_length= 20,choices=CHOIX_EXP)
     CHOIX_METEO = (('Bonne','Bonne'),('Moyenne','Moyenne'),('Mauvaise','Mauvaise'))

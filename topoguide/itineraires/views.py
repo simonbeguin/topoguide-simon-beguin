@@ -11,6 +11,9 @@ from .models import Itineraire, Sortie
 def itineraires(request):
     """
     Prends les itinéraires créés et les affiches
+
+    Args:
+        request : la demande entrante
     """
     itineraires = get_list_or_404(Itineraire)
     return render(request, 'itineraires/itineraires.html', {'itineraires': itineraires})
@@ -20,6 +23,11 @@ def itineraires(request):
 def sorties(request, itineraire_id):
     """
     Prends les sorties créés  et les affiches
+
+    Args:
+        request : la demande entrante
+        itineraire_id : l'identifiant de l'itineraire 
+
     """
     sorties  = get_list_or_404(Sortie, itineraire_id = itineraire_id)
     itineraire = get_object_or_404(Itineraire, pk = itineraire_id)
@@ -30,6 +38,10 @@ def sorties(request, itineraire_id):
 def sortie(request, sortie_id):
     """
     Prend une sortie et affiche les détails
+
+    Args:
+        request : la demande entrante
+        itineraire_id : l'identifiant de la sortie
     """
     sortie = get_object_or_404(Sortie, pk=sortie_id)
     return render(request, 'itineraires/sorties_details.html', {'sortie': sortie})
@@ -37,9 +49,18 @@ def sortie(request, sortie_id):
 @login_required
 def nouvelle_sortie(request):
     """
-    Crée une nouvelle sortie
+    Crée une nouvelle sortie dans la base de donnée
+    Args:
+        request: la demande entrante, GET or POST
+    Returns:
+        - Une page avec un formulaire vide si c'est une requête GET,
+        - Une page avec un formulaire pré-rempli si c'est une requête POST
+          avec des mauvaises donnée,
+        - ou une page avec la sortie ajouté
     """
-    if request.method == "POST":
+    if request.method == 'GET':
+         form = SortieForm()
+    elif request.method == "POST":
         form = SortieForm(request.POST)
         if form.is_valid():
             sortie = form.save(commit=False)
@@ -47,14 +68,24 @@ def nouvelle_sortie(request):
             sortie.published_date = timezone.now()
             sortie.save()
             return redirect('itineraires:sortie_details', pk = sortie.pk)
-    else:
-        form = SortieForm()
     return render(request, 'itineraires/modif_sortie.html', {'form': form})
 
 @login_required
 def modif_sortie(request, sortie_id):
+    """
+    Modifie uen sortie déjà enregistée dans la base de donnée
+    Args:
+        request: la demande entrante, GET or POST
+    Returns:
+        - Une page avec un formulaire vide si c'est une requête GET,
+        - Une page avec un formulaire pré-rempli si c'est une requête POST
+          avec des mauvaises donnée,
+        - ou une page avec la sortie modifié
+    """
     sortie = get_object_or_404(Sortie, pk=sortie_id)
-    if request.method == "POST":
+    if request.method == 'GET':
+         form = SortieForm(instance=sortie)
+    elif request.method == "POST":
         form = SortieForm(request.POST, instance=sortie)
         if form.is_valid():
             sortie = form.save(commit=False)
@@ -62,8 +93,6 @@ def modif_sortie(request, sortie_id):
             sortie.published_date = timezone.now()
             sortie.save()
             return redirect('itineraires:sortie_details', sortie_id)
-    else:
-        form = SortieForm(instance=sortie)
     return render(request, 'itineraires/modif_sortie.html', {'form': form})
 
 
