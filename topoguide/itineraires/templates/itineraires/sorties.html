@@ -72,7 +72,7 @@
 </div>
 
 <div class="row pt-3">
-    <a class="btn btn-secondary" href="{% url 'itineraires:nouvelle_sortie' %}">Créer une nouvelle sortie</a>
+    <a class="btn btn-secondary" href="{% url 'itineraires:nouvelle_sortie' itineraire.id%}">Créer une nouvelle sortie</a>
 </div>
 
 {% endblock content %}
