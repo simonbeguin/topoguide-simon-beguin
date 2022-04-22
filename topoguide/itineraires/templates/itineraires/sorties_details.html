@@ -6,9 +6,28 @@
 
 {% block content %}
 
-<!-- Entête de la page de sortie avec un lien cliquable sur l'itinéraire pour revenir à la page des itinéraires ainsi que le nom du randonneur-->
+<!-- Entête de la page de sortie avec un lien cliquable sur l'itinéraire pour revenir à la page des itinéraires ainsi que le nom du randonneur et info sur l'itineraire-->
 <div class="row pb-3">
     <h1><a href="{% url 'itineraires:sorties' sortie.itineraire.id %}">{{ sortie.itineraire }}</a><small> -- Sortie de {{ sortie.utilisateur }}</small></h1>
+    <br><br>
+    <div class="container">
+    <tr>
+        <td><b>Altitude de départ</b> : {{sortie.itineraire.altitude_depart}} mètres</td>
+        <br>
+        <td><b>Altitude minimale</b> : {{sortie.itineraire.altitude_minimale}} mètres</td>
+        <br>
+        <td><b>Altitude maximale</b> : {{sortie.itineraire.altitude_maximale}} mètres</td>
+        <br>
+        <td><b>Dénivelé positif cumulé</b> : {{sortie.itineraire.denivele_positif_cumule}} mètres </td>
+        <br>
+        <td><b>Dénivelé négatif cumulé</b> : {{sortie.itineraire.denivele_negatif_cumule}} mètres </td>
+        <br>
+        <td><b>Durée estimée</b> : {{sortie.itineraire.duree}} heures</td>
+        <br>
+        <td><b>Difficulté</b> : {{sortie.itineraire.difficulte}} /5</td>
+    </tr>
+    </div>
+
 </div>
 
 <div class="row">

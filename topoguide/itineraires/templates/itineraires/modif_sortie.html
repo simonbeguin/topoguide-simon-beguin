@@ -2,8 +2,30 @@
 {% load bootstrap5 %} 
 
 {% block content %}
+    <!-- Information sur l'itinéraire en entête-->
+    <div class="row pb-3">
+        <h1>Editer sortie pour {{itineraire.titre}}</h1>
+        {{itineraire.description}} depuis {{itineraire.point_depart}}
+        <br><br>
+        <div class="container">
+        <tr>
+            <td><b>Altitude de départ</b> : {{itineraire.altitude_depart}} mètres</td>
+            <br>
+            <td><b>Altitude minimale</b> : {{itineraire.altitude_minimale}} mètres</td>
+            <br>
+            <td><b>Altitude maximale</b> : {{itineraire.altitude_maximale}} mètres</td>
+            <br>
+            <td><b>Dénivelé positif cumulé</b> : {{itineraire.denivele_positif_cumule}} mètres </td>
+            <br>
+            <td><b>Dénivelé négatif cumulé</b> : {{itineraire.denivele_negatif_cumule}} mètres </td>
+            <br>
+            <td><b>Durée estimée</b> : {{itineraire.duree}} heures</td>
+            <br>
+            <td><b>Difficulté</b> : {{itineraire.difficulte}} /5</td>
+        </tr>
+        </div>
 
-    <h2>Nouvelle sortie</h2>
+    </div>
     <!-- Formulaire de création d'une sortie-->
     <form method="POST" action = "" class="post-form">{% csrf_token %}
         <div class="mb-3">
