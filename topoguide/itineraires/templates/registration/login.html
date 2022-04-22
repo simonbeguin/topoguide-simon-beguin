@@ -12,13 +12,14 @@
                     <div class="col-md-6">
                         <div class="card">
                             <div class="card-header"><strong>Se connecter à votre compte</strong></div>
-                            <div class="card-body">
-                                <form method="post" action="{% url 'login' %}">
+                                <div class="card-body">
+                                    <form method="post" action="{% url 'login' %}">
                                     {% csrf_token %}
                                     {{ form }}
                                     <div class="form-group"><input type="submit" value="login">
                                     <input type="hidden" name="next" value="{{ next }}">
                                     </form>
+                                </div>
                             </div>
                         </div>
                     </div>
