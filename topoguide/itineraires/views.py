@@ -64,10 +64,10 @@ def nouvelle_sortie(request):
         form = SortieForm(request.POST)
         if form.is_valid():
             sortie = form.save(commit=False)
-            sortie.author = request.user
+            sortie.utilisateur = request.user
             sortie.published_date = timezone.now()
             sortie.save()
-            return redirect('itineraires:sortie_details', pk = sortie.pk)
+            return redirect('itineraires:sortie_details', sortie.pk)
     return render(request, 'itineraires/modif_sortie.html', {'form': form})
 
 @login_required
@@ -89,7 +89,7 @@ def modif_sortie(request, sortie_id):
         form = SortieForm(request.POST, instance=sortie)
         if form.is_valid():
             sortie = form.save(commit=False)
-            sortie.author = request.user
+            sortie.utilisateur = request.user
             sortie.published_date = timezone.now()
             sortie.itineraire =  get_object_or_404(Itineraire, pk = sortie.itineraire.id) #pré-rempli l'itinéraire
             sortie.save()
